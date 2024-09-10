@@ -8,18 +8,23 @@ new_env/
 fine-tuned-model/
 *.pyc
 __pycache__/
-Trancendence_V2/Research/
+Trancendence_Versions/InsideLLMS-Research/
 
+# Ignore personal Data
 training_data.jsonl
 training_data_prepared.jsonl
 diary.docx
 cleaned_diary.txt
+v1_cleaned_diary.txt
+v3_cleaned_diary.txt
+
+
 # Ignore specific files in a subdirectory - personal diaries
-Trancendence_V2/22_Aug_2024-V3/training_data_original.jsonl
-Trancendence_V2/22_Aug_2024-V3/translated_data.jsonl
-Trancendence_V2/22_Aug_2024-V3/PromptResponseDataset.json
-Trancendence_V2/Lamma3InitialTesting/diary_text.txt
-Trancendence_V2/Lamma3InitialTesting/preprocessed_diary_text.txt
-Trancendence_V2/Lamma3InitialTesting/tokenized_preprocessed_diary_text.json
+Trancendence_Versions/V3_DeepDiaryProcessing/full_training_data_original.jsonl
+Trancendence_Versions/V3_DeepDiaryProcessing/full_translated_data.jsonl
+Trancendence_Versions/V3_DeepDiaryProcessing/PromptResponseDataset_V1.json
+Trancendence_Versions/Lamma3InitialTesting/diary_text.txt
+Trancendence_Versions/Lamma3InitialTesting/preprocessed_diary_text.txt
+Trancendence_Versions/Lamma3InitialTesting/tokenized_preprocessed_diary_text.json
 
 

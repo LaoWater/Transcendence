@@ -64,7 +64,7 @@ print(client)
 
 # Preparing results files to read
 working_dir = os.getcwd()
-file_path_origin = os.path.join(working_dir, r'training_data.jsonl')
+file_path_origin = os.path.join(working_dir, r'training_data_top30_forGPTtest.jsonl')
 
 # Read the JSONL results from the specified full path
 diary_entries_split = []
@@ -85,7 +85,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 data.extend(results)
 
 # Save the structured data into a JSON file
-with open('PromptResponseDataset.json', 'w') as f:
+with open('PromptResponseDataset_V1.json', 'w') as f:
     json.dump(data, f, indent=4)
 
-print("Data has been saved to PromptResponseDataset.json")
+print("Data has been saved to PromptResponseDataset_V1.json")

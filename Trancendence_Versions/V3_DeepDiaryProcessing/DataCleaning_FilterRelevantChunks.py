@@ -1,6 +1,6 @@
 #####################################
 ### Diary.docx was transformed in previous versions in .jsonl ###
-### Each paragraph from the Main Document has been transformed into a json object - in training_data_original.jsonl ###
+### Each paragraph from the Main Document has been transformed into a json object - in full_training_data_original.jsonl ###
 ### In this script we are transforming it from paragraphs format into a structured LLM dataset ###
 ### This is because in this context, there is no use for un-supervised learning ###
 ### For what we're trying to achieve, we'll explore 3 methods: Trained for: Prompt Generation, Role-base Conversation
@@ -42,6 +42,9 @@ def generate_prompt(paragraph):
              OR the *paragraph* to be appended to main list - OR paragraph slightly modified so it falls into the
              discussed context.
              
+             Rather modify content so that a proper question/topic is assigned rather than removing it.
+             Removal rate should be less than 1-2%.
+             
             Don't return any additional text"""
             },
             {
@@ -65,7 +68,7 @@ print(client)
 
 # Preparing results files to read
 working_dir = os.getcwd()
-file_path_origin = os.path.join(working_dir, r'translated_data.jsonl')
+file_path_origin = os.path.join(working_dir, r'full_translated_data.jsonl')
 
 # Read the JSONL results from the specified full path
 diary_entries_split = []

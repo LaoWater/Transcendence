@@ -23,7 +23,7 @@ def is_english(text_check):
 def read_jsonl_and_convert_to_list():
     # Preparing results files to read
     working_dir = os.getcwd()
-    file_path_origin = os.path.join(working_dir, r'training_data_original.jsonl')
+    file_path_origin = os.path.join(working_dir, r'full_training_data_original.jsonl')
 
     # Read the JSONL results from the specified full path
     diary_entries_split = []
@@ -83,7 +83,7 @@ for chunk in text:
 
 print(f"Translations completed with Total of {translations_count} processed translations."
       )
-with open('translated_data.jsonl', 'w') as outfile:
+with open('full_translated_data.jsonl', 'w') as outfile:
     for item in translated_text:
         json.dump({"text": item}, outfile)
         outfile.write('\n')

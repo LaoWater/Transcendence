@@ -2,7 +2,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingA
 from datasets import load_dataset
 
 # Load dataset
-dataset = load_dataset('json', data_files={'train': 'training_data.jsonl'})
+dataset = load_dataset('json', data_files={'train': 'training_data_top30_forGPTtest.jsonl'})
 
 # Load pre-trained model and tokenizer
 model_name = "EleutherAI/gpt-neo-1.3B"

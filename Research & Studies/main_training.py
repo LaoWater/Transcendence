@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 logging.info(f"Current working directory: {os.getcwd()}")
 
 # Check if the file exists
-file_path = 'training_data.jsonl'
+file_path = 'training_data_top30_forGPTtest.jsonl'
 if not os.path.isfile(file_path):
     raise FileNotFoundError(f"File not found: {file_path}")
 
