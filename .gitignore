@@ -16,7 +16,7 @@ training_data_prepared.jsonl
 diary.docx
 cleaned_diary.txt
 v1_cleaned_diary.txt
-v3_cleaned_diary.txt
+Initial Data Preparing/Data/v3_step1_cleaned_diary.txt
 
 
 # Ignore specific files in a subdirectory - personal diaries
