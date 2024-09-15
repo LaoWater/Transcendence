@@ -2,7 +2,6 @@ import os
 import json
 import openai
 import time
-
 from openai import OpenAI
 
 # Set your OpenAI API key
@@ -27,7 +26,7 @@ def categorize_chunk(chunk, model="gpt-4o-mini", temperature=0.8):
 Please read the following text and categorize it into one of the main subjects listed below. 
 Allow broader integration - not just by specific words but view it broader.
 If you can link it to multiple categories - link it to the highest chance one.
-If All categories chances per prompt are under 10% - map it as "uncertain" of form
+If All categories chances per prompt are under 10% - 
 {{"category": "Uncertain", "chunk": "The original text chunk"}}
 
 -----------------------
@@ -44,7 +43,7 @@ interchanging forces.
 9. The Natural Truths: Air, Food, Movement ~ The inner natural truths: Emotions, Feelings, Conditionings.
 
 These are the main subjects for you to categorize on.
-When outputting - use the summary of category:
+When outputting - use the summary of category names, with no numbers preceding them, only text:
 1. Food & Digestive System
 2. Movement
 3. Into the Mind

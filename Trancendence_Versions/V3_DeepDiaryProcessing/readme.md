@@ -5,13 +5,15 @@ Version 1 of Transcendence ended in complete hallucination of LLM after feeding 
 Also, at this point, there are not free to use big performing models.
 
 ###############
-## Version 3 ##
+## Version 2 ##
 ###############
 Version 2, started to look into LLMs, took llama 3.1 and broke it down up to reviewing weights, config, forward passes.
-Installed locally through 3rd party ollama - reached training bottle neck.
+Installed locally through 3rd party ollama - reached training bottleneck.
 Then downloaded official model files - RAW NN files - not compatible with torch, transformers frameworks.
 
-Finally, used hugging face, but reached a new type of bottle new of the model taking 2+ minutes per response using CUDA
+Finally, used hugging face, but reached a new type of bottleneck -  the model taking 2+ minutes per response using CUDA
+Un-usable Locally in the context of this project.
+Maybe try using it with API call to some 3rd party like together.ai or others. later on.
 Time to move to version 3.
 
 ###############
