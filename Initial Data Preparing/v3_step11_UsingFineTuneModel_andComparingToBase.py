@@ -5,7 +5,8 @@ completion = client.chat.completions.create(
   model="ft:gpt-4o-mini-2024-07-18:personal::A8phTRw2",
   messages=[
     {"role": "system", "content": ""},
-    {"role": "user", "content": "What foods bring you comfort during tough times?"}
+    {"role": "user", "content": "What is the fine line between the mine interfering with the body"
+                                "and guiding it towards healthful, mindful, blessed eating?"}
   ]
 )
 
@@ -21,7 +22,8 @@ completion = client.chat.completions.create(
   model="gpt-4o-mini",
   messages=[
     {"role": "system", "content": ""},
-    {"role": "user", "content": "What foods bring you comfort during tough times?"}
+    {"role": "user", "content": "What is the fine line between the mine interfering with the body "
+                                "and guiding it towards healthful, mindful, blessed eating?"}
   ]
 )
 
