@@ -1,9 +1,16 @@
+import concurrent.futures
 import os
 import json
 import openai
 import time
 from openai import OpenAI
-import sys
+
+######################################
+## Parallel Processing of API calls ##
+## Use Carefully as it can become very taxing ##
+## Currently implemented to use the CPU with concurrent.futures Library ##
+################################################
+
 
 # Set your OpenAI API key
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -98,34 +105,15 @@ Return the result in JSON format:
     return result_chunks
 
 
-def process_entries_with_cost_estimate(entries):
-    # Define the cost per 100 API calls (adjust as per GPT-4 API pricing)
-    cost_per_100_calls = 0.01  # $0.01 per 100 calls
+# Function to process each chunk
+def process_chunk(chunk_idx, entry_text):
+    chunk_text = entry_text.get('text') or entry_text.get('chunk')
+    if not chunk_text:
+        return None
 
-    # Step 1: Count total entries and estimate costs
-    total_entries = len(entries)
-    total_cost_estimation = (total_entries / 100) * cost_per_100_calls
-
-    # Output the number of entries and estimated cost
-    print(f"Number of entries: {total_entries}")
-    print(f"Estimated cost for API calls: ${total_cost_estimation:.4f}")
-
-    # Step 2: Await user confirmation to proceed
-    user_input = input("Press 'Y' to confirm and begin API calling, or any other key to exit: ").strip().lower()
-
-    # Step 3: Check user input and proceed or exit
-    if user_input == 'y':
-        print("Proceeding with API calls...")
-
-        # Step 4: Start looping through the entries and process them (the second part of your script)
-        for idx, entry in enumerate(entries):
-            # Perform your API calling logic here
-            print(f"Processing entry {idx + 1}: {entry}")
-            # Continue with API calls...
-
-    else:
-        print("Exiting script...")
-        sys.exit(0)  # Exit the script
+    print(f"Categorizing chunk {chunk_idx + 1}/{len(translated_entries)}")
+    processed_result = categorize_chunk(chunk_text)
+    return processed_result
 
 
 ###################
@@ -134,25 +122,32 @@ def process_entries_with_cost_estimate(entries):
 
 start_time = time.time()
 
-process_entries_with_cost_estimate(translated_entries)
-
 categorized_entries = []
+# Limit number of processed entries with index
+index_limit = 9999
 count_index = 0
-for idx, entry in enumerate(translated_entries):
-    chunk_text = entry.get('text') or entry.get('chunk')
-    if not chunk_text:
-        continue
-    count_index += 1
-    if count_index >= 20:
-        break
 
-    print(f"Categorizing chunk {idx + 1}/{len(translated_entries)}")
-    result = categorize_chunk(chunk_text)
-    categorized_entries.append(result)
-    time.sleep(1)  # Adjust the sleep time as needed
+# Set up parallel processing using ThreadPoolExecutor
+with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+    futures = []
+
+    for idx, entry in enumerate(translated_entries):
+        if count_index >= index_limit:
+            break
+
+        count_index += 1
+        # Submit the processing of each chunk to the thread pool
+        futures.append(executor.submit(process_chunk, idx, entry))
+
+    # Collect results as they complete
+    for future in concurrent.futures.as_completed(futures):
+        result = future.result()
+        if result:
+            categorized_entries.append(result)
+        time.sleep(1)  # Adjust the sleep time if needed between API calls
 
 # Save the categorized data
-output_file_path = 'Data/v3_step4_categorized_diary.json'
+output_file_path = 'Data/v3_step4_categorized_diary_ParallelProcessing.json'
 with open(output_file_path, 'w', encoding='utf-8') as output_file:
     json.dump(categorized_entries, output_file, indent=2)
 
@@ -160,5 +155,3 @@ print(f"Categorized data has been saved to {output_file_path}")
 
 final_compute_time = time.time() - start_time
 print(f"Total Compute Time: {final_compute_time}")
-
-
