@@ -4,7 +4,7 @@ import json
 import openai
 import time
 from openai import OpenAI
-
+from preparing_data_v3_step4_CategorizingData_and_CostPrediction import process_entries_with_cost_estimate
 ######################################
 ## Parallel Processing of API calls ##
 ## Use Carefully as it can become very taxing ##
@@ -121,6 +121,7 @@ def process_chunk(chunk_idx, entry_text):
 ###################
 
 start_time = time.time()
+process_entries_with_cost_estimate(translated_entries)
 
 categorized_entries = []
 # Limit number of processed entries with index

@@ -136,6 +136,8 @@ start_time = time.time()
 
 process_entries_with_cost_estimate(translated_entries)
 
+
+
 categorized_entries = []
 count_index = 0
 for idx, entry in enumerate(translated_entries):
