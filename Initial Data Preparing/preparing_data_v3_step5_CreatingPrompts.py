@@ -1,3 +1,5 @@
+import concurrent.futures
+import datetime
 import os
 import json
 import time
@@ -87,41 +89,60 @@ Return the result in JSON format:
     return generated_result
 
 
-################
-# Main Starts ##
-################
-
-# Read the categorized diary data
-input_file_path = 'Data/v3_step4_categorized_diary.json'
-with open(input_file_path, 'r', encoding='utf-8') as input_file:
-    categorized_entries = json.load(input_file)
-
-prompt_content_pairs = []
-all_generated_prompts = []
-
-for idx, entry in enumerate(categorized_entries):
+# Function to process each entry and generate prompt-content pairs
+def process_entry(idx, entry):
     category = entry.get('category')
     chunk_text = entry.get('chunk')
 
     if not chunk_text or not category:
-        continue  # Skip if missing data
+        return None  # Skip if missing data
 
     if category != "Uncertain":
         print(f"Processing entry {idx + 1}/{len(categorized_entries)}")
 
         result = generate_prompt_content(category, chunk_text)
         if result:
-            prompt_content_pairs.append(result)
-            all_generated_prompts.append(result['prompt'])
+            return {
+                "result": result,
+                "prompt": result['prompt']
+            }
         else:
             print(f"Failed to generate prompt-content pair for entry {idx + 1}")
+            return None
     else:
         print(f"Skipping entry {idx + 1}/{len(categorized_entries)} (Uncertain Category Detected)")
+        return None
 
-    time.sleep(1)  # Adjust as needed to respect rate limits
 
+################
+# Main Starts ##
+################
+
+start_time = time.time()
+
+# Read the categorized diary data
+input_file_path = 'Data/v3_step4_categorized_diary_ParallelProcessing.json'
+with open(input_file_path, 'r', encoding='utf-8') as input_file:
+    categorized_entries = json.load(input_file)
+
+prompt_content_pairs = []
+all_generated_prompts = []
+
+# Use parallel processing to handle the entries
+with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    futures = []
+    for idx, entry in enumerate(categorized_entries):
+        futures.append(executor.submit(process_entry, idx, entry))
+        time.sleep(1)  # Adjust as needed to respect rate limits
+
+    for future in concurrent.futures.as_completed(futures):
+        result = future.result()
+        if result:
+            prompt_content_pairs.append(result["result"])
+            all_generated_prompts.append(result["prompt"])
+
+# Save the output to a file
 output_file_path = 'Data/v3_step5_creating_prompt_content_pairs.jsonl'
-
 with open(output_file_path, 'w', encoding='utf-8') as file:
     for pair in prompt_content_pairs:
         prompt = clean_text(pair['prompt'])
@@ -132,7 +153,10 @@ with open(output_file_path, 'w', encoding='utf-8') as file:
         }
         file.write(json.dumps(data) + '\n')
 
+# Print time taken and results
 print(f"Prompt-content pairs have been saved to {output_file_path}")
+elapsed_time = time.time() - start_time
+print(f"Total time taken: {elapsed_time}")
 
 print("All generated prompts for review before creating Final DataSet:")
 for pair in prompt_content_pairs:

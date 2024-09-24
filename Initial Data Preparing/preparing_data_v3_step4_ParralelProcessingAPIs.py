@@ -4,7 +4,8 @@ import json
 import openai
 import time
 from openai import OpenAI
-from preparing_data_v3_step4_CategorizingData_and_CostPrediction import process_entries_with_cost_estimate
+import sys
+
 ######################################
 ## Parallel Processing of API calls ##
 ## Use Carefully as it can become very taxing ##
@@ -39,7 +40,7 @@ If All categories chances per prompt are under 10% -
 
 -----------------------
 Main Subjects:
-1. Food & Digestive System: The body's core and highest Body, Mind, and Life Quality Conditioner ~ Life-Sustaining Force.
+1. Food & Digestive System: The body's core and highest Life Quality Conditioner ~ Life-Sustaining Force.
 2. Movement - Biomechanical Pains, Performance, Recovery
 3. Into the Mind: The Miracle CPU of Nature—thoughts, pains, reading, processing, autopilot.
 4. Into the Soul: Philosophies, Religions, God, Purpose, Meaning of Life and Death, Ikigai.
@@ -114,6 +115,30 @@ def process_chunk(chunk_idx, entry_text):
     print(f"Categorizing chunk {chunk_idx + 1}/{len(translated_entries)}")
     processed_result = categorize_chunk(chunk_text)
     return processed_result
+
+
+def process_entries_with_cost_estimate(entries):
+    # Define the cost per 100 API calls (adjust as per GPT-4 API pricing)
+    cost_per_100_calls = 0.01  # $0.01 per 100 calls
+
+    # Step 1: Count total entries and estimate costs
+    total_entries = len(entries)
+    total_cost_estimation = (total_entries / 100) * cost_per_100_calls
+
+    # Output the number of entries and estimated cost
+    print(f"Number of entries: {total_entries}")
+    print(f"Estimated cost for API calls: ${total_cost_estimation:.4f}")
+
+    # Step 2: Await user confirmation to proceed
+    user_input = input("Press 'Y' to confirm and begin API calling, or any other key to exit: ").strip().lower()
+
+    # Step 3: Check user input and proceed or exit
+    if user_input == 'y':
+        print("Proceeding with API calls...")
+
+    else:
+        print("Exiting script...")
+        sys.exit(0)  # Exit the script
 
 
 ###################

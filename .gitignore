@@ -1,6 +1,9 @@
 # Ignore virtual environment directories
 new_env/
 
+# Ignore sensitive Data
+Initial Data Preparing/Data
+
 # Ignore IDE specific files (example for PyCharm/IntelliJ)
 .idea/
 

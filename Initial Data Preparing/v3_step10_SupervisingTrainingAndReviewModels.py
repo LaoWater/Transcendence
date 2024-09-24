@@ -18,18 +18,20 @@ for job in jobs_list.data:
     print(f"JOB ID: {job.id}")
     finetuning_jobs.append(job.id)
 
+current_job = finetuning_jobs[0]
+
 # Retrieve the state of a specific fine-tune
-job_state = client.fine_tuning.jobs.retrieve(finetuning_jobs[0])
+job_state = client.fine_tuning.jobs.retrieve(current_job)
 
 # Pretty print the job state
 print("\nJob State:")
-pprint.pprint(job_state, indent=4)
+pprint.pprint(job_state, indent=10)
 
 # List up to 10 events from a fine-tuning job
-jobs_events = client.fine_tuning.jobs.list_events(fine_tuning_job_id=finetuning_jobs[0], limit=100)
+jobs_events = client.fine_tuning.jobs.list_events(fine_tuning_job_id=current_job, limit=100)
 
 # Pretty print the job events
-print(f"\nJob {finetuning_jobs[0]} events:")
+print(f"\nJob {current_job} events:")
 pprint.pprint(jobs_events.data, indent=4)
 print("\n\n\n Available Models: \n")
 

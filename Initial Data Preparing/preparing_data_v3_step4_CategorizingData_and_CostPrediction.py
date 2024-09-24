@@ -117,12 +117,6 @@ def process_entries_with_cost_estimate(entries):
     if user_input == 'y':
         print("Proceeding with API calls...")
 
-        # Step 4: Start looping through the entries and process them (the second part of your script)
-        for idx, entry in enumerate(entries):
-            # Perform your API calling logic here
-            print(f"Processing entry {idx + 1}: {entry}")
-            # Continue with API calls...
-
     else:
         print("Exiting script...")
         sys.exit(0)  # Exit the script
@@ -135,8 +129,6 @@ def process_entries_with_cost_estimate(entries):
 start_time = time.time()
 
 process_entries_with_cost_estimate(translated_entries)
-
-
 
 categorized_entries = []
 count_index = 0
@@ -162,5 +154,3 @@ print(f"Categorized data has been saved to {output_file_path}")
 
 final_compute_time = time.time() - start_time
 print(f"Total Compute Time: {final_compute_time}")
-
-

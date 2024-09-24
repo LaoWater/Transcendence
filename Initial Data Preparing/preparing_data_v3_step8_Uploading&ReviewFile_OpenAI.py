@@ -71,6 +71,8 @@ else:
 
 # Deleting Files
 
+# client.files.delete(file_id)
+
 exit()
 for file_id in file_ids:
     print(f" Deleting {file_id}...")
