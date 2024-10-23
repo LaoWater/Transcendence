@@ -6,7 +6,7 @@ tokenizer = AutoTokenizer.from_pretrained("path_to_llama_model_directory")
 model = AutoModelForCausalLM.from_pretrained("path_to_llama_model_directory")
 
 # Load the dataset
-data_files = {"train": "tokenized_preprocessed_diary_text.json.json"}
+data_files = {"train": "tokenized_preprocessed_diary_text.json"}
 dataset = load_dataset('json', data_files=data_files)
 
 

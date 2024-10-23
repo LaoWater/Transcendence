@@ -28,7 +28,7 @@ print("\nJob State:")
 pprint.pprint(job_state, indent=10)
 
 # List up to 10 events from a fine-tuning job
-jobs_events = client.fine_tuning.jobs.list_events(fine_tuning_job_id=current_job, limit=100)
+jobs_events = client.fine_tuning.jobs.list_events(fine_tuning_job_id=current_job, limit=1000)
 
 # Pretty print the job events
 print(f"\nJob {current_job} events:")

@@ -4,8 +4,15 @@ import random
 
 client = OpenAI()
 
-prompt = ('Give me some advice on how to approach working on something which needs to be done but it'
-          'is overwhelming and the Mind wants to keep postponing it')
+prompt = ("""
+Read conversation carefully and slowly, studying it's tokens and arrangements as character Lao speaks.
+
+Read it several times in different chunks so you can truly immerse into this characters "neural networks definitions".
+
+Then, continue conversation.
+
+
+CONTINUE CONVERSATION FULLY ONLY IN LAO CHARACTER AS HE WOULD NATURALLY CONTINUE TYPING""")
 
 completion = client.chat.completions.create(
   model="ft:gpt-4o-mini-2024-07-18:personal::AAh0bCFk",
