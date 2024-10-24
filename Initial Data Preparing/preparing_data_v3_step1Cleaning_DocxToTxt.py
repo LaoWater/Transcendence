@@ -35,4 +35,4 @@ def clean_diary(input_path, output_path):
 #### Cleaning & Processing Diary ####
 #####################################
 
-clean_diary(r'Data\diary.docx', r'Data\v3_step1_cleaned_diary.txt')
+clean_diary(r'Data\Diary_Full.docx', r'Data\v3_step1_cleaned_diary.txt')

@@ -41,12 +41,12 @@ def process_text(txt_file_path):
                 exclude = True
 
             # Rule 2: Exclude if single line, standalone, and contains any of the exclusion strings
-            elif any(excl_str in paragraph for excl_str in exclusion_strings):
+            elif all(excl_str in paragraph for excl_str in exclusion_strings):
                 exclude = True
 
         if not exclude:
             # Append the paragraph as a dictionary with key 'chunk'
-            processed_paragraphs.append({'chunk': paragraph})
+            processed_paragraphs.append({'chunk': str(paragraph)})
 
     # Convert the list of dictionaries to a JSON object
     json_output = json.dumps(processed_paragraphs, ensure_ascii=False, indent=4)
@@ -55,13 +55,13 @@ def process_text(txt_file_path):
 
 
 # Specify the path to your text file
-file_path = r'Data\v3_step1_cleaned_diary.txt'
+file_path = r'Data\v4_step1_cleaned_diary.txt'
 
 # Process the text and get the JSON output
 json_result = process_text(file_path)
 
 # Optionally, write the JSON output to a file
-with open(r'Data\v3_step2_cleaned_diary.json', 'w', encoding='utf-8') as f:
+with open(r'Data\v4_step2_cleaned_diary.json', 'w', encoding='utf-8') as f:
     f.write(json_result)
 
 # Print the JSON output
