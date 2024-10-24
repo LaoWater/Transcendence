@@ -18,13 +18,13 @@ __pycache__/
 Trancendence_Versions/InsideLLMS-Research/
 
 # Ignore personal Data
+Data Preparation, Cleaning & Processing/Data
 training_data.jsonl
 training_data_prepared.jsonl
 diary.docx
 cleaned_diary.txt
 v1_cleaned_diary.txt
-Initial Data Preparing/Data/v3_step1_cleaned_diary.txt
-
+Trancendence_Versions/Current Version_4/Initial Data Preparing/Data
 
 # Ignore specific files in a subdirectory - personal diaries
 Trancendence_Versions/V2_Beta_BeganDiaryProcessing/full_training_data_original.jsonl
