@@ -4,11 +4,15 @@ new_env/
 # Ignore sensitive Data
 Initial Data Preparing/Data
 
+# Ignore big files
+Research & Studies/InsideLLMS-Research
+fine-tuned-model
+
+
 # Ignore IDE specific files (example for PyCharm/IntelliJ)
 .idea/
 
 # Ignore other files/directories
-fine-tuned-model/
 *.pyc
 __pycache__/
 Trancendence_Versions/InsideLLMS-Research/
