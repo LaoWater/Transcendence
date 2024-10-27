@@ -1,22 +1,20 @@
-Q: "What is Love? What is to fall in love?"
-
-Lao Beta 2:
-There is no rushing the matter of falling in love. It can't be forced or paraded with deliberate attempts. It grows under your very eyes—inside you as a decision, and all around you. You can't "choose" to love somebody—you can only choose to engage in it fully and let it blossom.
-
-In every breath, her breath. In every touch, his touch on her skin. In every taste, the taste of her lips, her body. Making love to her is losing oneself, then finding oneself, beyond all words. You don't discuss with her how you are making love mentally. In fact, it seems that this, the greatest magic trick of this universal simulation, if there is any, is to mentally "disconnect" from all these and do it because when you feel her body, only the very deep levels and instinctual thoughts—the feelings her body gives and expresses—exist. The very magnetism that brought you together grows with everything you did together—whether sleeping, eating, playing, riding, dancing, cooking, talking, cleaning, or raising children.
-
-Her spirit invades your body and is revealed on the body level as a symphony, shattering every pre-existing notion of love, of kissing, of sex, of bonding. A unique symphony, created only by the way your spirits resonate on the body level. It confirms all previous logics in the universe’s alchemy, all previous logs opened and closed, studied upon one another, reaching new levels of insight.
-
-In sleeping separately or in different rooms. In loving every fiber of her being. Your soul was empty, then it met something very similar to itself, in her essence. The only thing she may have neglected in the depths of her being, guided awake skillfully by her gatekeeper, is her spirit finding a body—but becoming unsure of whose body it is.
-
-Yes, loving her is partly yours to give, and partly in the God's hands. But she is utterly wrong about being incomplete without you—she is whole. It is the God's job.
+###########################################################################
+###########################################################################
+# Lao Beta #2 Was trained on medium-size Dataset of medium Quality - #
+# This is a checkpoint #1 at 2/3 of training,
+# Where we have touched a sweetspot between Pre-training data and training data
+# Lao's touch is being felt clearly, yet not to a point where the binding of the pre-train with training becomes stainde and overwhelming for the LLM.
+# Most stable Model yet and producer of Marvelling asnwers worthy of labeling them as "Complete Transcendence"
+# That is when the Model produces something similar or better than the writer itself, although using different words, expressions and styles of "painting", but springing from a similar "Neural Network".
 
 
+import re
+from openai import OpenAI
+import random
 
+client = OpenAI()
 
-
-/**********************************************************************************************************************/
-
+prompt = """
 Study below text and continue writing about the 4th phase of Learning.'
 
 The Art of Learning has 3 main stages of Alchemy
@@ -26,14 +24,14 @@ II. The Second Learning,
 III. The Third Learning,
 
 and one final Form of a Teaching:
-IV. Spontaneous Birthing in Greatness when needed
+IV. Spontaneous Birthing in Greatness when needed 
 & continuous development using the first 3 dhammas.
 
-The Art of Learning can enhance up to 10x One’s Learning Rate
+The Art of Learning can enhance up to 10x One’s Learning Rate 
 and Transferability of Skill to the Real World.
 It is Alchemizing the dhamma in front of one with Faith, Purpose, Vision, Wisdom and Wisdom in Action.
 
-There are, of course, other ways to Learn, just as there are many
+There are, of course, other ways to Learn, just as there are many 
 ways to Move, To Eat, to Live.
 But we are Students of the Art of Life, emerging from a intimate, inter-connected meeting of all Life’s Arts, each requiring immense sufferings, sincere effort and dedication to unveil.
 The Art of Breathing,
@@ -106,35 +104,80 @@ Now it is time to Die and be Born again when it is needed – Stronger, Faster, 
 The Warrior Monk sleeps, as billions of neural patterns fire across the Realms of Theory and Experience inside his Mind - automatically seeking to converge the 2 Realms.
 “Blessed are you, Lord our God, King of the Universe, for giving me the strength to Fight and Wisdom to Learn.”
 
+"""
+
+completion = client.chat.completions.create(
+  model="ft:gpt-4o-mini-2024-07-18:personal::AAh0b7Uy:ckpt-step-934",
+  messages=[
+    {"role": "system", "content": "You are Lao, a student of Life who has searched for understanding of the Body, Mind "
+                                  "And Soul - all his Life. "
+                                  "Has traveled the world and oceans, deeply immersed in cultures in both study"
+                                  "and practice, love, habits of the body, Mind and Soul."
+                                  "He returns home to spread his teachings with his fellow brothers, in "
+                                  "Truth Discerning awareness, wise but yet not speaking as if he is better than others."},
+    {"role": "user", "content": prompt}
+  ],
+  temperature=0.7,         # Controls creativity; 0 is deterministic
+  top_p=0.9,               # Controls diversity; higher means more varied completions
+  max_tokens=500,          # Limits the length of the response
+  frequency_penalty=0.0,   # Penalizes frequent words
+  presence_penalty=0.6     # Encourages topic diversity
+)
+
+print(f"Q: {prompt} \n")
+# Assuming the LLM's output is in completion.choices[0].message.content
+completion_content = completion.choices[0].message.content
 
 
-Lao Beta 2:
-Continuing from the Third Learning, the Mind gently drifts towards The Fourth Learning: Spontaneous Greatness.
+# Function to split text after every 2-3 punctuation marks
+def split_into_paragraphs(text):
+    # Regex pattern to match punctuation marks (., ?, !)
+    sentences = re.split(r'([.!?])', text)
 
-IV.
+    paragraphs_processing = []
+    temp_paragraph = ""
+    count = 0
 
-The Fourth Learning: Spontaneous Birthing in Greatness when Needed
+    for i in range(0, len(sentences) - 1, 2):  # iterate over sentences with punctuation
+        temp_paragraph += sentences[i] + sentences[i + 1]  # Combine sentence and punctuation
+        count += 1
 
-The culmination of the Three Learnings reaches its zenith here. It is not something that can be explicitly taught or learned in a linear fashion; rather, it is the organic outcome of a Mind and Body that have fully engaged with the Art of Learning.
+        if count >= random.randint(2, 3):  # Randomly decide between 2 or 3 punctuation marks
+            paragraphs_processing.append(temp_paragraph.strip())  # Add paragraph
+            temp_paragraph = ""
+            count = 0
 
-When the Mind has traversed the landscape of Thought, Theory, Practice, Experience, and Integration, it creates a fertile ground for spontaneous greatness to emerge.
+    if temp_paragraph:
+        paragraphs_processing.append(temp_paragraph.strip())  # Add the last paragraph if not empty
 
-A Mind that is truly prepared for anything.
+    return paragraphs_processing
 
-This is the realm where you are called to give your all, to die and be reborn into Action without clinging to outcomes.
 
-Just as a doctor, trained in the art of Medicine, responds to the patient’s need, so too does the Man respond to the world’s call when it appears – whether in coding, writing, teaching, fighting, or any other dimension of existence.
+# Generate paragraphs
+paragraphs = split_into_paragraphs(completion_content)
 
-It is the Teacher who has become One with the Material, the Samurai who has trained, bled, and fought, the Builder who has built, and the Seeker who has sought.
+# Print each paragraph
+print("Lao Beta 2:")
+for paragraph in paragraphs:
+    print(paragraph)
+    print()  # Adds a blank line between paragraphs
 
-In this state of being, the Mind does not just react but births solutions spontaneously, guided by the Wisdom that has taken root deeply within.
 
-In Unity, when One Learns, We All Learn.
+####################################
+## Comparing to Normal Base Model ##
+####################################
 
-And thus, the Fourth Learning emerges from the convergence of the Three. When the time comes for you to act, to create, to build, to fight – the One does not sit idly by waiting for instructions or pondering what must be done.
+exit()
 
-He acts. He creates.
+completion = client.chat.completions.create(
+  model="gpt-4o-mini",
+  messages=[
+    {"role": "system", "content": ""},
+    {"role": "user", "content": "What is the fine line between the mine interfering with the body "
+                                "and guiding it towards healthful, mindful, blessed eating?"}
+  ]
+)
 
-He builds. He fights.
+print("\n\n\nBase Model:")
+print(completion.choices[0].message.content)
 
-This is the essence of the Fourth Learning: the spontaneous birthing of greatness when needed.

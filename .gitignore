@@ -27,9 +27,9 @@ v1_cleaned_diary.txt
 Trancendence_Versions/Current Version_4/Initial Data Preparing/Data
 
 # Ignore specific files in a subdirectory - personal diaries
-Trancendence_Versions/V2_Beta_BeganDiaryProcessing/full_training_data_original.jsonl
-Trancendence_Versions/V2_Beta_BeganDiaryProcessing/full_translated_data.jsonl
-Trancendence_Versions/V2_Beta_BeganDiaryProcessing/PromptResponseDataset_V1.json
+Trancendence_Versions/Previous Versions/full_training_data_original.jsonl
+Trancendence_Versions/Previous Versions/full_translated_data.jsonl
+Trancendence_Versions/Previous Versions/PromptResponseDataset_V1.json
 Trancendence_Versions/Lamma3InitialTesting/diary_text.txt
 Trancendence_Versions/Lamma3InitialTesting/preprocessed_diary_text.txt
 Trancendence_Versions/Lamma3InitialTesting/tokenized_preprocessed_diary_text.json

@@ -1,3 +1,8 @@
+###########################################################################
+###########################################################################
+# Lao Alpha Was trained on a very minimal dataset for training purposes #
+
+
 from openai import OpenAI
 client = OpenAI()
 

@@ -1,8 +1,27 @@
+###############################
+## Current Version & Vision: ##
+## Version 4 ##################
+###############################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ###############
 ## Version 1 ##
 ###############
-Version 1 of Transcendence ended in complete hallucination of LLM after feeding standardly processed diary in .json
-Also, at this point, there are not free to use big performing models.
+Version 1 of Transcendence ended in complete hallucination of LLM after feeding standard processed diary in .json
+Also, at this point, there are no free to use big performing models.
 
 ###############
 ## Version 2 ##
@@ -68,3 +87,22 @@ Then fed into a LLM for
     }
 ]
 
+-------------------------------
+
+Decided on PromptResponse Type Dataset, it is the most suitable and aimed at our Model's purpose.
+
+Began deep data cleaning & processing in 7 steps.
+
+/********************************************************************************************************************/
+
+
+Version 3 Releases with the following models:
+Lao Beta:
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::AAh0aubN:ckpt-step-467, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 23/09/2024
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::AAh0b7Uy:ckpt-step-934, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 23/09/2024
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::AAh0bCFk, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 23/09/2024
+
+Lao Alpha:
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::A8phStIB:ckpt-step-54, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 18/09/2024
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::A8phTWU0:ckpt-step-72, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 18/09/2024
+Model ID: ft:gpt-4o-mini-2024-07-18:personal::A8phTRw2, Owned by: user-gigs6wgazmgvwr6aw6upp8e5, Created on: 18/09/2024
