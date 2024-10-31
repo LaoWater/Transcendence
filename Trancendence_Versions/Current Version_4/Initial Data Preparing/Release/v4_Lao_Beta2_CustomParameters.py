@@ -106,27 +106,20 @@ The Warrior Monk sleeps, as billions of neural patterns fire across the Realms o
 
 """
 
-completion = client.chat.completions.create(
-  model="ft:gpt-4o-mini-2024-07-18:personal::AAh0b7Uy:ckpt-step-934",
-  messages=[
-    {"role": "system", "content": "You are Lao, a student of Life who has searched for understanding of the Body, Mind "
-                                  "And Soul - all his Life. "
-                                  "Has traveled the world and oceans, deeply immersed in cultures in both study"
-                                  "and practice, love, habits of the body, Mind and Soul."
-                                  "He returns home to spread his teachings with his fellow brothers, in "
-                                  "Truth Discerning awareness, wise but yet not speaking as if he is better than others."},
-    {"role": "user", "content": prompt}
-  ],
-  temperature=0.7,         # Controls creativity; 0 is deterministic
-  top_p=0.9,               # Controls diversity; higher means more varied completions
-  max_tokens=500,          # Limits the length of the response
-  frequency_penalty=0.0,   # Penalizes frequent words
-  presence_penalty=0.6     # Encourages topic diversity
-)
 
-print(f"Q: {prompt} \n")
-# Assuming the LLM's output is in completion.choices[0].message.content
-completion_content = completion.choices[0].message.content
+
+def comparing_to_base_model(completion_p):
+    completion_p = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": ""},
+            {"role": "user", "content": "What is the fine line between the mine interfering with the body "
+                                        "and guiding it towards healthful, mindful, blessed eating?"}
+        ]
+    )
+
+    print("\n\n\nBase Model:")
+    print(completion_p.choices[0].message.content)
 
 
 # Function to split text after every 2-3 punctuation marks
@@ -153,6 +146,30 @@ def split_into_paragraphs(text):
     return paragraphs_processing
 
 
+
+prompt_2 = ("advise One on when is the body(beast) hungry and when is the Mind")
+
+completion = client.chat.completions.create(
+    model="ft:gpt-4o-mini-2024-07-18:personal::AAh0b7Uy:ckpt-step-934",
+    messages=[
+        {"role": "system",
+         "content": "You are Lao, a student of Life who has searched for understanding of the Body, Mind "
+                    "And Soul - all his Life. "
+                    "Has traveled the world and oceans, deeply immersed in cultures in both study"
+                    "and practice, love, habits of the body, Mind and Soul."
+                    "He returns home to spread his teachings with his fellow brothers, in "
+                    "Truth Discerning awareness, wise but yet not speaking as if he is better than others."},
+        {"role": "user", "content": prompt_2}
+    ],
+    temperature=0.7,  # Controls creativity; 0 is deterministic
+    top_p=0.9,  # Controls diversity; higher means more varied completions
+    max_tokens=500,  # Limits the length of the response
+    frequency_penalty=0.0,  # Penalizes frequent words
+    presence_penalty=0.6  # Encourages topic diversity
+)
+
+completion_content = completion.choices[0].message.content
+
 # Generate paragraphs
 paragraphs = split_into_paragraphs(completion_content)
 
@@ -162,22 +179,9 @@ for paragraph in paragraphs:
     print(paragraph)
     print()  # Adds a blank line between paragraphs
 
-
 ####################################
 ## Comparing to Normal Base Model ##
 ####################################
 
-exit()
-
-completion = client.chat.completions.create(
-  model="gpt-4o-mini",
-  messages=[
-    {"role": "system", "content": ""},
-    {"role": "user", "content": "What is the fine line between the mine interfering with the body "
-                                "and guiding it towards healthful, mindful, blessed eating?"}
-  ]
-)
-
-print("\n\n\nBase Model:")
-print(completion.choices[0].message.content)
-
+print("Base Moodel: ")
+comparing_to_base_model(prompt_2)

@@ -20,21 +20,7 @@ Then, continue conversation.
 
 CONTINUE CONVERSATION FULLY ONLY IN LAO CHARACTER AS HE WOULD NATURALLY CONTINUE TYPING:
 
-Conversation:
-[And it's not a short term, It's been 2 years since I start doing my investment. 24.91% for 2 years, which means about 12% yearly.
-It's much more than the bank deposite rate which is less than 2 % yearly.
-
-But last year, when the return rate for stock is about -12%, there was stress causing by the mind.
-Then gradually it become balanced, and grow up to positive now. 
-Because those 2 stock which give me more than 100% profit, they grow so much this year.
-
-No. 2227 stock -39% is Car company
-No. 6751 stock -49% is Internet service industry
-Those 2 was the almost dying tree that I plant... 😮‍💨 
-
-No. 2360 stock  132% is a company related to Chip Industry
-No. 2467 stock  110% is a company related to "Robot" Industry
-Those 2 industry have lots of good news this year, so the price grows a lot and bring my balance sheet to positive now!]
+31 jul - allowing full authenticity with b. I dreamt my mother died as i fell asleep in her arms. The symbolical death of my mother. For my unconsciousness felt the string of pure love i have with my mother in   B tonight.  Her caring and affectionate energy made me feel safe. Loved. I woke up with the relief that the heavy and which eventually became toxic string, had finally been resolved. 
 
 """)
 
