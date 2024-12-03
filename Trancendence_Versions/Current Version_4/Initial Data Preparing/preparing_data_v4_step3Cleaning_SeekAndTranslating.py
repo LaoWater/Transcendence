@@ -22,9 +22,11 @@ def translate_to_english(text, model="gpt-4o-mini", temperature=0.7):
             {"role": "system", "content": """You are a helpful assistant that translates text to English.
             Consider that language translation are incomplete and may often be lacking context understanding.
             You are free to read the text and interpret it with medium temperature and make the necessary 
-            changes/adjustments so that the broader understanding and art of writing is kept."""},
+            changes/adjustments so that the broader understanding and art of writing is kept.
+            
+            Return specifically the new translated message and only the message, no additional stuff"""},
 
-            {"role": "user", "content": f"Translate the following text to English:\n\n{text}"}
+            {"role": "user", "content": f"Translate the following text from Romanian to English:\n\n{text}"}
         ],
         temperature=temperature
     )
@@ -43,7 +45,7 @@ def process_json_data(json_data, translation_log_file):
 
         # Check if the text is in English
         if is_english(text):
-            print("Detected English text. Adding to the translated entries.")
+            print("Detected English text. Adding to the final entries.")
             print(text)
             print("\n\n")
             translated_entries.append(entry)  # Keep the original if it's in English

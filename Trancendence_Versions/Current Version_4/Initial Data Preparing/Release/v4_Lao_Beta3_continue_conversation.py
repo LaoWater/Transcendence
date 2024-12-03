@@ -11,18 +11,26 @@ import random
 
 client = OpenAI()
 
-prompt = ("""
-Read conversation carefully and slowly, studying it's tokens and arrangements as character Lao speaks.
+prompt = (""" a friend came to my house and told me "Spinule come for a diba on the balcony" - 
 
-Read it several times in different chunks so you can truly immerse into this characters "neural networks definitions".
 
-Then, continue conversation.
 
-CONTINUE CONVERSATION FULLY ONLY IN LAO CHARACTER AS HE WOULD NATURALLY CONTINUE TYPING:
-
-31 jul - allowing full authenticity with b. I dreamt my mother died as i fell asleep in her arms. The symbolical death of my mother. For my unconsciousness felt the string of pure love i have with my mother in   B tonight.  Her caring and affectionate energy made me feel safe. Loved. I woke up with the relief that the heavy and which eventually became toxic string, had finally been resolved. 
-
+what does he mean?
 """)
+
+
+# ("""
+# Read conversation carefully and slowly, studying it's tokens and arrangements as character Lao speaks.
+#
+# Read it several times in different chunks so you can truly immerse into this characters "neural networks definitions".
+#
+# Then, continue conversation.
+#
+# CONTINUE CONVERSATION FULLY ONLY IN LAO CHARACTER AS HE WOULD NATURALLY CONTINUE TYPING:
+#
+# 31 jul - allowing full authenticity with b. I dreamt my mother died as i fell asleep in her arms. The symbolical death of my mother. For my unconsciousness felt the string of pure love i have with my mother in   B tonight.  Her caring and affectionate energy made me feel safe. Loved. I woke up with the relief that the heavy and which eventually became toxic string, had finally been resolved.
+#
+# """)
 
 
 

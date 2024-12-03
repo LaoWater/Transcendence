@@ -20,6 +20,10 @@ def process_text(txt_file_path):
 
     processed_paragraphs = []
 
+    count_single_lines = 0
+
+    exclude = False
+
     for paragraph in paragraphs:
         # Strip leading and trailing whitespace
         paragraph = paragraph.strip()
@@ -30,19 +34,16 @@ def process_text(txt_file_path):
 
         # Check if paragraph is a single line
         is_single_line = '\n' not in paragraph
+        # Count single lines to test previous step efficiency
+        if is_single_line:
+            count_single_lines += 1
 
-        # Initialize flag to determine whether to exclude the paragraph
         exclude = False
 
-        # Exclude Single line IF belonging to patterns: contains a month ~Recovery~ like, can add other exceptions
-        if is_single_line:
-            # Check for months in the paragraph
-            if any(month in paragraph for month in months):
-                exclude = True
 
-            # Rule 2: Exclude if single line, standalone, and contains any of the exclusion strings
-            elif all(excl_str in paragraph for excl_str in exclusion_strings):
-                exclude = True
+        # Rule 1: Exclude if single line, standalone, and contains any of the exclusion strings
+        if all(excl_str in paragraph for excl_str in exclusion_strings):
+            exclude = True
 
         if not exclude:
             # Append the paragraph as a dictionary with key 'chunk'
